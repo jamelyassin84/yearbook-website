@@ -1,0 +1,8 @@
+<div class="flex flex-col w-full min-h-[100vh]">
+    <page-header
+        headerTitle="Yearbook"
+        subtitle="Preserving Memories, Celebrating Achievements"
+    />
+
+    <yearbook-list [schoolYears]="schoolYears$ | async" />
+</div>

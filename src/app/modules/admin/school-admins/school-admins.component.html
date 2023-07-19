@@ -1,0 +1,40 @@
+<div class="flex flex-col w-full min-h-[100vh]">
+    <page-header
+        headerTitle="School Administrators"
+        subtitle="Leadership in Education, Empowering Success"
+        [template]="template"
+    />
+
+    <ng-template #template>
+        <div class="flex items-center px-5">
+            <div class="mr-auto"></div>
+
+            <mat-form-field class="w-full md:w-[200px]">
+                <mat-select
+                    (selectionChange)="filter()"
+                    [(ngModel)]="filters.school_year_id"
+                    placeholder="Select Academic Year"
+                >
+                    <mat-option [value]="undefined">All</mat-option>
+                    <mat-option
+                        [value]="schoolYear.id"
+                        *ngFor="
+                            let schoolYear of schoolYears$ | async;
+                            trackBy: trackByFn
+                        "
+                        >{{ schoolYear.name }}</mat-option
+                    >
+                </mat-select>
+            </mat-form-field>
+
+            <button
+                (click)="add()"
+                class="py-2.5 px-5 bg-isat-blue rounded text-white active:opacity-75 md:hover:bg-black -mt-4 ml-3"
+            >
+                New School Admin
+            </button>
+        </div>
+    </ng-template>
+
+    <school-admin-list [schoolAdmins]="schoolAdmins$ | async" />
+</div>

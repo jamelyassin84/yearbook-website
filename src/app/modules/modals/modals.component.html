@@ -1,0 +1,56 @@
+<manage-admin
+    modal
+    *ngIf="manageAdminModalOpened | async"
+    (click)="manageAdminModalOpened.next(false)"
+/>
+<manage-course
+    modal
+    *ngIf="manageCourseModalOpened | async"
+    (click)="manageCourseModalOpened.next(false)"
+/>
+<manage-department
+    modal
+    *ngIf="manageDepartmentModalOpened | async"
+    (click)="manageDepartmentModalOpened.next(false)"
+/>
+<manage-event
+    modal
+    *ngIf="manageSchoolEventModalOpened | async"
+    (click)="manageSchoolEventModalOpened.next(false)"
+/>
+<manage-faculty
+    modal
+    *ngIf="manageFacultyModalOpened | async"
+    (click)="manageFacultyModalOpened.next(false)"
+/>
+<manage-school-admin
+    modal
+    *ngIf="manageSchoolAdminModalOpened | async"
+    (click)="manageSchoolAdminModalOpened.next(false)"
+/>
+<manage-school-year
+    modal
+    *ngIf="manageSchoolYearModalOpened | async"
+    (click)="manageSchoolYearModalOpened.next(false)"
+/>
+<manage-section
+    modal
+    *ngIf="manageSectionModalOpened | async"
+    (click)="manageSectionModalOpened.next(false)"
+/>
+<manage-staff
+    modal
+    *ngIf="manageStaffModalOpened | async"
+    (click)="manageStaffModalOpened.next(false)"
+/>
+
+<manage-student
+    modal
+    *ngIf="manageStudentModalOpened | async"
+    (click)="manageStudentModalOpened.next(false)"
+/>
+<manage-yearbook
+    modal
+    *ngIf="manageYearbookModalOpened | async"
+    (click)="manageYearbookModalOpened.next(false)"
+/>

@@ -1,0 +1,36 @@
+import {Component} from '@angular/core'
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop'
+import {ActivatedRoute} from '@angular/router'
+import {dbwAnimations} from '@digital_brand_work/animations/animation.api'
+import {Store} from '@ngrx/store'
+import {StoreAction} from 'app/app-core/store/core/action.enum'
+import {AppState} from 'app/app-core/store/core/app.state'
+import {
+    schoolEventDetails,
+    schoolEventLoaders,
+} from 'app/app-core/store/ngrx/events/events.selectors'
+import {map} from 'rxjs'
+
+@Component({
+    selector: 'event-details',
+    templateUrl: './event-details.component.html',
+    animations: [...dbwAnimations],
+})
+export class EventDetailsComponent {
+    constructor(
+        private _store: Store<AppState>,
+        private _route: ActivatedRoute,
+    ) {
+        this._route.paramMap.pipe(takeUntilDestroyed()).subscribe((param) => {
+            this._store.dispatch(
+                StoreAction.EVENTS.show.request({id: param.get('id')}),
+            )
+        })
+    }
+
+    readonly schoolEvent$ = this._store.select(schoolEventDetails)
+
+    readonly loader$ = this._store
+        .select(schoolEventLoaders)
+        .pipe(map((loader) => loader.findOneLoader))
+}

@@ -1,0 +1,79 @@
+<div class="w-full">
+    <div
+        style="width: 350px"
+        @slideInBottom
+        @slideOutRight
+        *ngIf="alert.type === 'success'"
+        class="alert-wrapper"
+    >
+        <mat-icon class="text-emerald-400" svgIcon="error"></mat-icon>
+
+        <div class="ml-4">
+            <div
+                class="flex items-center mb-1 text-lg font-extrabold text-emerald-400"
+            >
+                {{ alert.title | titlecase }}
+
+                <mat-icon
+                    class="ml-auto text-white icon-size-4"
+                    svgIcon="feather:x"
+                ></mat-icon>
+            </div>
+            <div class="description">
+                {{ alert.message }}
+            </div>
+        </div>
+    </div>
+
+    <div
+        style="width: 350px"
+        @slideInBottom
+        @slideOutRight
+        *ngIf="alert.type === 'info'"
+        class="alert-wrapper"
+    >
+        <mat-icon class="text-sky-400" svgIcon="error"></mat-icon>
+
+        <div class="ml-4">
+            <div
+                class="flex items-center mb-1 text-lg font-extrabold text-sky-400"
+            >
+                {{ alert.title | titlecase }}
+
+                <mat-icon
+                    class="ml-auto text-white icon-size-4"
+                    svgIcon="feather:x"
+                ></mat-icon>
+            </div>
+            <div class="description">
+                {{ alert.message }}
+            </div>
+        </div>
+    </div>
+
+    <div
+        style="width: 350px"
+        @slideInBottom
+        @slideOutRight
+        *ngIf="alert.type === 'error'"
+        class="alert-wrapper"
+    >
+        <mat-icon class="text-red-400" svgIcon="error"></mat-icon>
+
+        <div class="ml-4">
+            <div
+                class="flex items-center mb-1 text-lg font-extrabold text-red-400"
+            >
+                {{ alert.title | titlecase }}
+
+                <mat-icon
+                    class="ml-auto text-white icon-size-4"
+                    svgIcon="feather:x"
+                ></mat-icon>
+            </div>
+            <div class="description">
+                {{ alert.message }}
+            </div>
+        </div>
+    </div>
+</div>

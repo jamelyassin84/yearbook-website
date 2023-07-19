@@ -1,0 +1,153 @@
+<form [formGroup]="form" class="flex flex-col w-full">
+    <div
+        class="flex flex-col items-center justify-center w-full bg-white border-gray-100 rounded-md"
+    >
+        <div class="flex items-center justify-center w-full my-4">
+            <div
+                role="button"
+                fileDropZone
+                class="active:opacity-20"
+                (onDrop)="onDrop($event)"
+                (click)="previewInput.click()"
+            >
+                <div
+                    [ngClass]="{'bg-gray-100': !previewImage}"
+                    class="min-h-[214px] w-[214px] rounded-md overflow-hidden flex items-center justify-center"
+                >
+                    <image-preview [image]="previewImage" />
+                </div>
+            </div>
+
+            <input
+                type="file"
+                class="hidden"
+                accept="image/*"
+                #previewInput
+                (change)="onFileRead($event)"
+            />
+        </div>
+
+        <div class="text-2xl">Photo</div>
+        <mat-error class="text-sm" *ngIf="form.get('picture')?.invalid"
+            >Photo is required</mat-error
+        >
+    </div>
+
+    <div class="grid gap-4 mt-4 md:grid-cols-4">
+        <mat-form-field class="w-full">
+            <mat-label>First</mat-label>
+            <input
+                matInput
+                autofocus
+                placeholder="John"
+                formControlName="first_name"
+            />
+            <mat-error>First is Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Middle</mat-label>
+            <input
+                matInput
+                autofocus
+                placeholder="Wick"
+                formControlName="middle_name"
+            />
+            <mat-error>Middle is Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Last</mat-label>
+            <input
+                matInput
+                autofocus
+                placeholder="Doe"
+                formControlName="last_name"
+            />
+            <mat-error>Last is Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Suffix</mat-label>
+            <input
+                matInput
+                autofocus
+                placeholder="Sr"
+                formControlName="suffix"
+            />
+            <mat-error>Suffix is Required</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div
+        *ngIf="form.value.type !== 'Student'"
+        class="grid gap-4 mt-4 md:grid-cols-4"
+    >
+        <mat-form-field class="w-full">
+            <mat-label>Title</mat-label>
+            <input
+                matInput
+                autofocus
+                placeholder="phD, MIT"
+                formControlName="title"
+            />
+            <mat-error>Title is Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Position</mat-label>
+            <input
+                matInput
+                autofocus
+                placeholder="Administrative Office V"
+                formControlName="position"
+            />
+            <mat-error>Position is Required</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="grid gap-4 mt-4 md:grid-cols-4">
+        <mat-form-field class="w-full">
+            <mat-label>Province</mat-label>
+            <input
+                matInput
+                autofocus
+                placeholder="Iloilo"
+                formControlName="province"
+            />
+            <mat-error>Province is Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Municipality</mat-label>
+            <input
+                matInput
+                autofocus
+                placeholder="Barotac Nuevo"
+                formControlName="municipality"
+            />
+            <mat-error>Municipality is Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Barangay</mat-label>
+            <input
+                matInput
+                autofocus
+                placeholder="Jalaud"
+                formControlName="barangay"
+            />
+            <mat-error>Barangay is Required</mat-error>
+        </mat-form-field>
+    </div>
+
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea
+            matInput
+            placeholder="The Master of Mischief, the Sultan of Smiles, and the Prankster Extraordinaire!"
+            formControlName="description"
+        ></textarea>
+        <mat-error>Description is required</mat-error>
+    </mat-form-field>
+</form>

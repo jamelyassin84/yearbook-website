@@ -1,0 +1,31 @@
+<button (click)="print()" class="ml-auto" matTooltip="Print" mat-icon-button>
+    <mat-icon [svgIcon]="'feather:printer'" />
+</button>
+
+<ng-container>
+    <ng-container *ngIf="links.length !== 0">
+        <button
+            matTooltip="Previous Page"
+            mat-icon-button
+            (click)="onBack.emit()"
+            [ngClass]="{
+                ' pointer-events-none opacity-25': links[0].url === null,
+            }"
+            class="active:opacity-38 py-2.5 px-5 rounded ml-3"
+        >
+            <mat-icon svgIcon="mat_solid:chevron_left" />
+        </button>
+
+        <button
+            matTooltip="Next Page"
+            mat-icon-button
+            (click)="onNext.emit()"
+            [ngClass]="{
+                ' pointer-events-none opacity-25': links[0].url === null,
+            }"
+            class="active:opacity-38 py-2.5 px-5 rounded ml-3"
+        >
+            <mat-icon svgIcon="mat_solid:chevron_right" />
+        </button>
+    </ng-container>
+</ng-container>

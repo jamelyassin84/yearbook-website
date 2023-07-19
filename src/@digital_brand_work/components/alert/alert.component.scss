@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components {
+    .alert-wrapper {
+        @apply drop-shadow-xl w-full my-2 p-5  flex items-center mx-auto  md:ml-auto bg-gray-700 backdrop-blur-md rounded-lg mr-5;
+    }
+
+    .description {
+        @apply text-white/70 text-md;
+    }
+}

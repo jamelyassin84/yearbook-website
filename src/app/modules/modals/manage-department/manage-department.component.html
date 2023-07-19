@@ -1,0 +1,64 @@
+<div
+    @slideInTop
+    stopPropagation
+    *ngIf="opened$ | async"
+    style="min-width: 400px"
+    class="relative z-10 w-full mx-auto my-auto overflow-auto bg-white md:w-1/4 min-h-1/4"
+>
+    <modal-header
+        modalTitle="Manage Department"
+        subTitle="Unleashing Expertise, Cultivating Excellence"
+        (onClose)="opened$.next(false)"
+    />
+
+    <form [formGroup]="form" class="w-full p-5">
+        <mat-form-field class="w-full">
+            <mat-label>Academic Year</mat-label>
+            <mat-select formControlName="school_year_id">
+                <mat-option
+                    [value]="schoolYear.id"
+                    *ngFor="
+                        let schoolYear of schoolYears$ | async;
+                        trackBy: trackByFn
+                    "
+                    >{{ schoolYear.name }}</mat-option
+                >
+            </mat-select>
+            <mat-error>Academic Year is Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Department Name</mat-label>
+            <input
+                matInput
+                autofocus
+                formControlName="name"
+                placeholder="College of Engineering"
+            />
+            <mat-error>Department Name is Required</mat-error>
+        </mat-form-field>
+
+        <button
+            matRipple
+            primaryButton
+            (click)="save()"
+            *ngIf="loader$ | async as loader"
+            [loader]="loader"
+            matRippleColor="rgba(250, 250, 250,.3)"
+            [ngClass]="{
+                'bg-isat-blue hover:bg-black ': loader === 'idle'
+            }"
+            class="w-full py-3 mt-4 text-base text-white rounded-md"
+        >
+            <button-title
+                [loader]="loader"
+                [buttons]="[
+                    'Save',
+                    'processing request...',
+                    'Saving Failed',
+                    'Saved'
+                ]"
+            />
+        </button>
+    </form>
+</div>

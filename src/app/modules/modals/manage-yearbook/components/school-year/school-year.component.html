@@ -1,0 +1,38 @@
+<div
+    [ngClass]="{
+        'left-0    ': reversed,
+        'right-0 flex-row-reverse ': !reversed
+    }"
+    class="absolute flex items-center w-full bottom-10"
+>
+    <div
+        [ngClass]="{
+            '  rounded-r-2xl   ': reversed,
+            ' rounded-l-2xl': !reversed
+        }"
+        [ngStyle]="{
+            color: headerTextColor,
+            'background-color': headerBackgroundColor
+        }"
+        class="relative z-10 w-auto min-w-[20vw] px-10 py-3 font-bold uppercase"
+    >
+        <span
+            [ngStyle]="{
+                color: headerTextColor,
+                'background-color': headerBackgroundColor
+            }"
+            class="mr-2 text-2xl italic"
+            >Yearbook</span
+        >
+        <span
+            [ngStyle]="{
+                color: headerTextColor,
+                'background-color': headerBackgroundColor
+            }"
+            class="font-bold t"
+            >{{ schoolYear.name }}</span
+        >
+    </div>
+
+    <div class="w-[100vw] relative z-0 border-b"></div>
+</div>

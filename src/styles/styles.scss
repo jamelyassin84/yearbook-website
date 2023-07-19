@@ -1,0 +1,25 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+.no-scroll {
+    overflow: hidden !important;
+    * {
+        overflow: hidden !important;
+    }
+}
+
+@media print {
+    @page {
+        size: auto; /* Set the page size to auto to remove header and footer */
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    /* Add any additional styles to hide header and footer */
+    /* For example, you can use the following CSS */
+    header,
+    footer {
+        display: none;
+    }
+}

@@ -1,0 +1,69 @@
+<div
+    *ngIf="!type"
+    @fadeIn
+    [ngClass]="{'pr-10': !reversed, 'pl-10': reversed}"
+    class="relative z-10 grid w-full grid-cols-3 gap-5 my-4 mt-18"
+>
+    <div *ngFor="let entity of entities; trackBy: trackByFn">
+        <img
+            class="h-[180px] w-full object-contain mb-2"
+            [src]="entity.information.picture"
+            alt=""
+        />
+        <div
+            [ngStyle]="{
+            color: firstTextColor,
+        }"
+            class="font-bold text-center text-md"
+        >
+            {{ entity.information | to_full_name }} {{ entity?.title }}
+        </div>
+        <div
+            [ngStyle]="{
+            color: secondTextColor,
+        }"
+            class="text-xs text-center uppercase"
+        >
+            {{ entity.position }}
+        </div>
+        <div
+            [ngStyle]="{
+            color: thirdTextColor,
+        }"
+            class="text-xs text-center"
+        >
+            {{ entity.information | to_address }}
+        </div>
+    </div>
+</div>
+
+<div
+    *ngIf="type"
+    @fadeIn
+    [ngClass]="{'pr-10': !reversed, 'pl-10': reversed}"
+    class="relative z-10 grid grid-cols-3 gap-5 my-4 mt-18"
+>
+    <div *ngFor="let student of entities; trackBy: trackByFn">
+        <img
+            class="h-[210px] w-full object-cover mb-2"
+            [src]="student.information.picture"
+            alt=""
+        />
+        <div
+            [ngStyle]="{
+            color: firstTextColor,
+        }"
+            class="font-bold text-center uppercase text-md"
+        >
+            {{ student.information | to_full_name }}
+        </div>
+        <div
+            [ngStyle]="{
+            color: secondTextColor,
+        }"
+            class="text-xs text-center"
+        >
+            {{ student.information | to_address }}
+        </div>
+    </div>
+</div>

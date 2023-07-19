@@ -1,0 +1,145 @@
+<div
+    class="flex flex-col items-center flex-auto min-w-0 sm:flex-row md:items-start sm:justify-center md:justify-start"
+>
+    <div
+        class="relative items-center justify-center flex-auto hidden w-1/2 h-full p-16 overflow-hidden bg-black md:flex lg:px-28 dark:border-l"
+    >
+        <img
+            src="../../../../assets/bg2.jpeg"
+            class="absolute object-fill opacity-20 logo"
+            alt=""
+        />
+
+        <div class="relative z-10 w-full max-w-2xl">
+            <div class="font-bold text-white text-7xl">
+                Iloilo Science & Technology University: E-Yearbook Generation
+                System
+            </div>
+        </div>
+
+        <div class="absolute text-white bottom-20">
+            <div class="font-medium text-white"></div>
+            Developed by: Ruby
+        </div>
+    </div>
+</div>
+<div
+    [formGroup]="signInForm"
+    class="flex w-full px-4 py-8 bg-white sm:w-auto md:h-full sm:p-16 md:p-16"
+>
+    <div class="flex flex-col w-full mx-auto my-auto sm:w-80 sm:mx-0">
+        <div
+            class="p-8 mx-auto bg-white rounded-full"
+            style="height: 20vh; width: 20vh"
+        >
+            <img
+                src="/assets/logo.png"
+                class="object-cover w-full h-full mt-auto"
+                alt=""
+            />
+        </div>
+        <div
+            class="mt-2 text-2xl font-extrabold leading-tight tracking-tighter text-center md:text-left"
+        >
+            Iloilo Science & Technology University
+        </div>
+        <p class="text-center md:text-left">E-Yearbook Generation System</p>
+
+        <form class="mt-8" [formGroup]="signInForm" #signInNgForm="ngForm">
+            <mat-form-field class="w-full">
+                <mat-label>Email address</mat-label>
+
+                <input id="email" matInput [formControlName]="'email'" />
+
+                <mat-error *ngIf="signInForm.get('email').hasError('required')">
+                    Email address is required
+                </mat-error>
+
+                <mat-error *ngIf="signInForm.get('email').hasError('email')">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Password</mat-label>
+
+                <input
+                    id="password"
+                    matInput
+                    type="password"
+                    [formControlName]="'password'"
+                    #passwordField
+                />
+
+                <button
+                    mat-icon-button
+                    type="button"
+                    (click)="
+                        passwordField.type === 'password'
+                            ? (passwordField.type = 'text')
+                            : (passwordField.type = 'password')
+                    "
+                    matSuffix
+                >
+                    <mat-icon
+                        class="icon-size-5"
+                        *ngIf="
+                            passwordField.type === 'password'
+                                ? 'heroicons_solid:eye'
+                                : 'heroicons_solid:eye-off'
+                        "
+                        [svgIcon]="'heroicons_solid:eye'"
+                    />
+                </button>
+
+                <mat-error> Password is required </mat-error>
+            </mat-form-field>
+
+            <fuse-alert
+                class="w-full mr-2 -pt-3"
+                [appearance]="'outline'"
+                [showIcon]="false"
+                [type]="'error'"
+                [@shake]="alert.type === 'error'"
+                *ngIf="showAlert"
+            >
+                <div class="flex w-full aic">
+                    <mat-icon
+                        svgIcon="mat_outline:warning"
+                        class="mr-3 icon-size-2"
+                    />
+
+                    <span style="transform: translateY(2px)">
+                        Invalid admin account.
+                    </span>
+                </div>
+                 
+            </fuse-alert>
+
+            <button
+                class="flex items-center justify-center w-full py-3 mt-6 font-black text-white rounded-full bg-isat-blue fuse-mat-button-large"
+                [disabled]="signInForm.disabled"
+                (click)="signIn()"
+            >
+                <span *ngIf="!signInForm.disabled"> Log-in</span>
+
+                <mat-progress-spinner
+                    *ngIf="signInForm.disabled"
+                    [diameter]="24"
+                    [mode]="'indeterminate'"
+                />
+            </button>
+
+            <div class="flex items-center mt-8">
+                <div class="flex-auto mt-px border-t"></div>
+                <div class="mx-2 text-secondary">Having trouble?</div>
+                <div class="flex-auto mt-px border-t"></div>
+            </div>
+
+            <div class="items-center mt-8 text-center">
+                <div class="flex-text-info">Contact Us:</div>
+                <div class="text-secondary">ruby@gmail.com</div>
+            </div>
+        </form>
+    </div>
+</div>

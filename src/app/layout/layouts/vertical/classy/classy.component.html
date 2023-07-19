@@ -1,0 +1,87 @@
+<!-- Loading bar -->
+<fuse-loading-bar></fuse-loading-bar>
+
+<!-- Navigation -->
+<fuse-vertical-navigation
+    class="dark print:hidden bg-isat-blue"
+    [mode]="isScreenSmall ? 'over' : 'side'"
+    [name]="'mainNavigation'"
+    [navigation]="navigation.default"
+    [opened]="!isScreenSmall"
+>
+    <ng-container fuseVerticalNavigationContentHeader>
+        <div class="flex items-center w-full p-4 pl-6">
+            <div class="flex items-center justify-center">
+                <img class="w-8" src="/assets/logo.png" />
+            </div>
+        </div>
+
+        <div class="flex flex-col items-center w-full p-4">
+            <div class="relative w-24 h-24">
+                <img
+                    class="w-full h-full rounded-full drop-shadow-2xl"
+                    src="/assets/logo.png"
+                    alt="User avatar"
+                />
+
+                <mat-icon
+                    class="icon-size-24"
+                    *ngIf="!user.avatar"
+                    [svgIcon]="'heroicons_solid:user-circle'"
+                ></mat-icon>
+            </div>
+
+            <div class="flex flex-col items-center justify-center w-full mt-6">
+                <div
+                    class="w-full overflow-hidden font-medium leading-normal text-center whitespace-nowrap text-ellipsis"
+                >
+                    {{ 'ISAT-U' }}
+                </div>
+
+                <div
+                    class="w-full mt-0.5 whitespace-nowrap text-ellipsis overflow-hidden text-center text-md leading-normal font-medium text-secondary"
+                >
+                    {{ 'admin@isat.edu.ph' }}
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container fuseVerticalNavigationContentFooter>
+        <div
+            class="flex items-center justify-center h-16 pl-2 pr-6 mt-2 mb-4 flex-0 opacity-12"
+        >
+            <!-- <img class="max-w-36" src="/assets/logo.png" /> -->
+        </div>
+    </ng-container>
+</fuse-vertical-navigation>
+
+<div class="flex flex-col flex-auto w-full min-w-0">
+    <div
+        class="relative flex items-center w-full h-16 px-4 shadow flex-0 md:px-6 z-49 dark:shadow-none dark:border-b bg-card dark:bg-transparent print:hidden"
+    >
+        <button mat-icon-button (click)="toggleNavigation('mainNavigation')">
+            <mat-icon [svgIcon]="'heroicons_outline:menu'"></mat-icon>
+        </button>
+
+        <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
+            <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
+
+            <div class="flex items-center ml-auto">
+                <user [showAvatar]="false"></user>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col flex-auto">
+        <router-outlet *ngIf="true"></router-outlet>
+    </div>
+
+    <div
+        class="relative flex items-center justify-start w-full px-4 text-white bg-black border-t flex-0 h-14 md:px-6 z-49 dark:bg-transparent print:hidden"
+    >
+        <span class="font-medium text-isat-yellow"
+            >BSIT -4 |Ruby &copy; {{ currentYear }}</span
+        >
+    </div>
+</div>

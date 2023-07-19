@@ -1,0 +1,61 @@
+<div
+    class="flex flex-col flex-auto mb-5 overflow-hidden rounded-md sm:col-span-6 bg-card"
+>
+    <div class="flex flex-col flex-auto mx-5 overflow-x-auto overflow-y-auto">
+        <table class="overflow-y-visible min-w-240">
+            <thead class="font-medium text-left uppercase">
+                <tr class="py-3" style="height: 51px; vertical-align: middle">
+                    <th class="pl-3">Academic Year</th>
+                    <th class="pl-3">Department</th>
+                    <th>Course</th>
+                    <th>Sections</th>
+                    <th>Created</th>
+                    <th>Last Updated</th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody [@listAnimation]="courses.length">
+                <tr
+                    *ngFor="
+                        let course of courses;
+                        let i = index;
+                        trackBy: trackByFn
+                    "
+                    class="relative border-b border-b-gray-100 h-[40px]"
+                >
+                    <td class="pl-3">{{ course.school_year.name }}</td>
+                    <td class="pl-3">{{ course.department.name }}</td>
+                    <td>
+                        {{ course.name }}
+                    </td>
+                    <td>{{ course.sections.length | number }}</td>
+                    <td>
+                        {{ course.created_at | date : 'MMM dd, yyyy hh:mm a' }}
+                    </td>
+                    <td>
+                        {{ course.updated_at | date : 'MMM dd, yyyy hh:mm a' }}
+                    </td>
+
+                    <td class="pr-3">
+                        <button [matMenuTriggerFor]="options">
+                            <mat-icon svgIcon="feather:more-horizontal" />
+                        </button>
+
+                        <mat-menu [xPosition]="'before'" #options="matMenu">
+                            <!-- <button mat-menu-item>View</button> -->
+
+                            <button (click)="edit(course)" mat-menu-item>
+                                Edit
+                            </button>
+
+                            <button (click)="remove(course)" mat-menu-item>
+                                Remove
+                            </button>
+                        </mat-menu>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

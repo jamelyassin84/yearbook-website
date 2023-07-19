@@ -1,0 +1,106 @@
+<div
+    @slideInTop
+    stopPropagation
+    *ngIf="opened$ | async"
+    class="relative z-10 w-full mx-auto my-auto bg-white md:w-[55%] min-h-[40vh] overflow-auto md:min-w-[900px]"
+>
+    <modal-header
+        modalTitle="Manage Students"
+        subTitle="Shaping Futures, Empowering Individuals"
+        (onClose)="opened$.next(false)"
+    />
+
+    <form [formGroup]="form" class="w-full p-5 max-h-[60vh] overflow-y-auto">
+        <div class="grid gap-4 md:grid-cols-4">
+            <mat-form-field class="w-full">
+                <mat-label>Academic Year</mat-label>
+                <mat-select formControlName="school_year_id">
+                    <mat-option
+                        [value]="schoolYear.id"
+                        *ngFor="
+                            let schoolYear of schoolYears$ | async;
+                            trackBy: trackByFn
+                        "
+                        >{{ schoolYear.name }}</mat-option
+                    >
+                </mat-select>
+                <mat-error>Academic Year is Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Department</mat-label>
+                <mat-select formControlName="department_id">
+                    <mat-option
+                        [value]="department.id"
+                        *ngFor="
+                            let department of departments$ | async;
+                            trackBy: trackByFn
+                        "
+                        >{{ department.name }}</mat-option
+                    >
+                </mat-select>
+                <mat-error>Department is Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Course</mat-label>
+                <mat-select formControlName="course_id">
+                    <mat-option
+                        [value]="course.id"
+                        *ngFor="
+                            let course of courses$ | async;
+                            trackBy: trackByFn
+                        "
+                        >{{ course.name }}</mat-option
+                    >
+                </mat-select>
+                <mat-error>Course is Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Section</mat-label>
+                <mat-select formControlName="section_id">
+                    <mat-option
+                        [value]="section.id"
+                        *ngFor="
+                            let section of sections$ | async;
+                            trackBy: trackByFn
+                        "
+                        >{{ section.name }}</mat-option
+                    >
+                </mat-select>
+                <mat-error>Section is Required</mat-error>
+            </mat-form-field>
+        </div>
+
+        <information
+            (onImageUploaded)="onImageUploaded($event)"
+            [form]="form"
+        />
+
+        <div class="flex w-full">
+            <button
+                matRipple
+                primaryButton
+                (click)="save()"
+                *ngIf="loader$ | async as loader"
+                [loader]="loader"
+                matRippleColor="rgba(250, 250, 250,.3)"
+                [ngClass]="{
+                    'bg-isat-blue hover:bg-black ': loader === 'idle'
+                }"
+                class="w-auto px-10 py-3 mt-4 ml-auto text-base text-white rounded-md"
+            >
+                <button-title
+                    [loader]="loader"
+                    [buttons]="[
+                        'Save',
+                        'processing request...',
+                        'Saving Failed',
+                        'Saved'
+                    ]"
+                />
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,39 @@
+<ng-container *ngIf="schoolAdmins$ | async as schoolAdmins">
+    <div class="flex items-center print:hidden">
+        <reverse-button
+            [reversed]="reversed"
+            class="ml-auto"
+            (onReverse)="reversed = !reversed"
+        />
+
+        <page-links
+            [links]="pageLinks$ | async"
+            (onBack)="paginate('prev')"
+            (onNext)="paginate('next')"
+        />
+    </div>
+
+    <bond-paper
+        [reversed]="reversed"
+        [template]="template"
+        [entities]="schoolAdmins"
+        [schoolYear]="schoolYear"
+        [headerTitle]="'Administrative Council'"
+        (onFirst)="firstTextColor = $event"
+        (onSecond)="secondTextColor = $event"
+        (onThird)="thirdTextColor = $event"
+        [firstTextColor]="firstTextColor"
+        [secondTextColor]="secondTextColor"
+        [thirdTextColor]="thirdTextColor"
+    />
+
+    <ng-template #template>
+        <entities-with-title-and-position
+            [entities]="schoolAdmins"
+            [reversed]="reversed"
+            [firstTextColor]="firstTextColor"
+            [secondTextColor]="secondTextColor"
+            [thirdTextColor]="thirdTextColor"
+        />
+    </ng-template>
+</ng-container>

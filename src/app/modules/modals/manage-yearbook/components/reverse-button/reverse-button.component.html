@@ -1,0 +1,7 @@
+<button matTooltip="Flip" (click)="onReverse.emit()" mat-icon-button>
+    <mat-icon
+        [svgIcon]="
+            reversed ? 'mat_solid:flip_to_front' : 'mat_solid:flip_to_back'
+        "
+    />
+</button>

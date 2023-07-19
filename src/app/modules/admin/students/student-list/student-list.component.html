@@ -1,0 +1,72 @@
+<div
+    class="flex flex-col flex-auto mb-5 overflow-hidden rounded-md sm:col-span-6 bg-card"
+>
+    <div class="flex flex-col flex-auto mx-5 overflow-x-auto overflow-y-auto">
+        <table class="overflow-y-visible min-w-240">
+            <thead class="font-medium text-left uppercase">
+                <tr class="py-3" style="height: 51px; vertical-align: middle">
+                    <th class="pl-3">Image</th>
+                    <th>Name</th>
+
+                    <th>Academic Year</th>
+                    <th>Department</th>
+                    <th>Course</th>
+
+                    <th>Created</th>
+                    <th>Last Updated</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody [@listAnimation]="students.length">
+                <tr
+                    *ngFor="
+                        let student of students;
+                        let i = index;
+                        trackBy: trackByFn
+                    "
+                    class="relative border-b border-b-gray-100 h-[40px]"
+                >
+                    <td>
+                        <img
+                            class="object-contain w-6 h-6 ml-3"
+                            [src]="student.information.picture"
+                            alt=""
+                        />
+                    </td>
+                    <td>
+                        {{ student.information | to_full_name | titlecase }}
+                    </td>
+
+                    <td>{{ student.school_year.name }}</td>
+                    <td>{{ student.department.name }}</td>
+                    <td>{{ student.course.name }}</td>
+
+                    <td>
+                        {{ student.created_at | date : 'MMM dd, yyyy hh:mm a' }}
+                    </td>
+                    <td>
+                        {{ student.updated_at | date : 'MMM dd, yyyy hh:mm a' }}
+                    </td>
+
+                    <td class="pr-3">
+                        <button [matMenuTriggerFor]="options">
+                            <mat-icon svgIcon="feather:more-horizontal" />
+                        </button>
+
+                        <mat-menu [xPosition]="'before'" #options="matMenu">
+                            <!-- <button mat-menu-item>View</button> -->
+
+                            <button (click)="edit(student)" mat-menu-item>
+                                Edit
+                            </button>
+
+                            <button (click)="remove(student)" mat-menu-item>
+                                Remove
+                            </button>
+                        </mat-menu>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

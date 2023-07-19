@@ -1,0 +1,56 @@
+<ng-container *ngIf="students$ | async as students">
+    <div class="flex items-center mb-8 print:hidden">
+        <mat-form-field class="w-full md:w-[230px] translate-y-2.5">
+            <mat-select
+                (selectionChange)="paginate(undefined)"
+                [(ngModel)]="filters.course_id"
+                placeholder="Select Course"
+            >
+                <mat-option [value]="undefined">All</mat-option>
+                <mat-option
+                    [value]="course.id"
+                    *ngFor="let course of courses$ | async; trackBy: trackByFn"
+                    >{{ course.name }}</mat-option
+                >
+            </mat-select>
+        </mat-form-field>
+
+        <reverse-button
+            [reversed]="reversed"
+            class="ml-auto mr-3"
+            (onReverse)="reversed = !reversed"
+        />
+
+        <page-links
+            [links]="pageLinks$ | async"
+            (onBack)="paginate('prev')"
+            (onNext)="paginate('next')"
+        />
+    </div>
+
+    <bond-paper
+        type="Student"
+        [entities]="students"
+        [reversed]="reversed"
+        [template]="template"
+        [schoolYear]="schoolYear"
+        [firstTextColor]="firstTextColor"
+        [secondTextColor]="secondTextColor"
+        [thirdTextColor]="thirdTextColor"
+        (onFirst)="firstTextColor = $event"
+        (onSecond)="secondTextColor = $event"
+        (onThird)="thirdTextColor = $event"
+        [headerTitle]="students[0]?.course.name ?? ''"
+    />
+
+    <ng-template #template>
+        <entities-with-title-and-position
+            type="Student"
+            [entities]="students"
+            [reversed]="reversed"
+            [firstTextColor]="firstTextColor"
+            [secondTextColor]="secondTextColor"
+            [thirdTextColor]="thirdTextColor"
+        />
+    </ng-template>
+</ng-container>

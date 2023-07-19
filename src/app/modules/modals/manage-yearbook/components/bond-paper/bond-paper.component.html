@@ -1,0 +1,78 @@
+<div class="text-center" *ngIf="entities.length === 0">No data to show..</div>
+
+<div
+    *ngIf="entities.length !== 0"
+    class="w-full mb-2 -mt-8 border-b print:hidden print:-mt-20"
+>
+    <input matTooltip="Background" type="color" [(ngModel)]="backgroundColor" />
+
+    <input
+        matTooltip="Banner Background"
+        type="color"
+        [(ngModel)]="headerBackgroundColor"
+    />
+
+    <input
+        matTooltip="Banner Text"
+        type="color"
+        [(ngModel)]="headerTextColor"
+    />
+
+    <input
+        (change)="onFirst.emit($event.target.value)"
+        matTooltip="First Text Color"
+        type="color"
+        [(ngModel)]="firstTextColor"
+    />
+    <input
+        (change)="onSecond.emit($event.target.value)"
+        matTooltip="Second Text Color"
+        type="color"
+        [(ngModel)]="secondTextColor"
+    />
+    <input
+        *ngIf="!type"
+        (change)="onThird.emit($event.target.value)"
+        matTooltip="Third Text Color"
+        type="color"
+        [(ngModel)]="thirdTextColor"
+    />
+</div>
+
+<div
+    *ngIf="entities.length !== 0"
+    [ngStyle]="{
+        background: backgroundColor
+    }"
+    class="relative p-10 print:mb-0 mb-10 border w-[21.59cm] h-[27.94cm] print:border-none print:w-full print:h-[85vh] overflow-hidden"
+>
+    <div
+        [ngStyle]="{
+            color: headerTextColor,
+            background: headerBackgroundColor
+        }"
+        [ngClass]="{
+            'left-0 rounded-r-2xl': !reversed,
+            'right-0 rounded-l-2xl': reversed
+        }"
+        class="absolute w-auto px-10 py-3 font-bold uppercase print:mb-10 top-10"
+    >
+        {{ headerTitle }}
+    </div>
+
+    <img
+        class="absolute object-contain h-[40vh] grayscale-0 opacity-5 z-0 top-[30%]"
+        src="/assets/logo.png"
+        alt=" "
+    />
+
+    <div [ngTemplateOutlet]="template"></div>
+
+    <school-year
+        [backgroundColor]="backgroundColor"
+        [headerTextColor]="headerTextColor"
+        [headerBackgroundColor]="headerBackgroundColor"
+        [schoolYear]="schoolYear"
+        [reversed]="reversed"
+    />
+</div>

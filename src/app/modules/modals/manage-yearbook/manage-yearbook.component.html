@@ -1,0 +1,58 @@
+<div
+    @slideInTop
+    stopPropagation
+    *ngIf="opened$ | async"
+    style="min-width: 400px"
+    class="relative z-10 w-full mx-auto my-auto bg-white md:w-[85%] h-[90vh] overflow-auto"
+>
+    <modal-header
+        modalTitle="Manage Yearbook"
+        subTitle="Preserving Memories, Crafting Legacies"
+        class="print:hidden"
+        (onClose)="opened$.next(false)"
+    />
+
+    <div class="w-full p-4 overflow-y-auto print:overflow-hidden">
+        <ul class="flex items-center mb-4 border-b print:hidden">
+            <li
+                role="button"
+                *ngFor="let entity of ENTITIES"
+                (click)="currentEntity = entity"
+                class="py-2.5 px-5 rounded"
+                [ngClass]="{
+                    'bg-transparent md:hover:bg-isat-blue/5':
+                        currentEntity !== entity,
+                    'pointer-events-none bg-isat-blue text-white':
+                        currentEntity === entity
+                }"
+            >
+                {{ entity }}
+            </li>
+        </ul>
+
+        <div
+            *ngIf="schoolYear$ | async as schoolYear"
+            class="flex justify-center"
+        >
+            <manage-yearbook-staff
+                [schoolYear]="schoolYear"
+                *ngIf="currentEntity === 'Staff'"
+            />
+
+            <manage-yearbook-faculty
+                [schoolYear]="schoolYear"
+                *ngIf="currentEntity === 'Faculty'"
+            />
+
+            <manage-yearbook-student
+                [schoolYear]="schoolYear"
+                *ngIf="currentEntity === 'Student'"
+            />
+
+            <manage-yearbook-school-admin
+                [schoolYear]="schoolYear"
+                *ngIf="currentEntity === 'School Admin'"
+            />
+        </div>
+    </div>
+</div>
