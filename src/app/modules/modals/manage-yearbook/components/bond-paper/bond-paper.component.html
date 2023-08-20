@@ -24,12 +24,14 @@
         type="color"
         [(ngModel)]="firstTextColor"
     />
+
     <input
         (change)="onSecond.emit($event.target.value)"
         matTooltip="Second Text Color"
         type="color"
         [(ngModel)]="secondTextColor"
     />
+
     <input
         *ngIf="!type"
         (change)="onThird.emit($event.target.value)"
@@ -55,6 +57,7 @@
             'left-0 rounded-r-2xl': !reversed,
             'right-0 rounded-l-2xl': reversed
         }"
+        [class]="getColors()"
         class="absolute w-auto px-10 py-3 font-bold uppercase print:mb-10 top-10"
     >
         {{ headerTitle }}

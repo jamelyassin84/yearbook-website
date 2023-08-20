@@ -49,4 +49,8 @@ export class BondPaperComponent {
     headerTextColor: string = '#FFFFFF' // White
     headerBackgroundColor: string = '#000000' // Black
     backgroundColor: string = '#FFFFFF' // White
+
+    getColors() {
+        return `bg-[${this.headerTextColor}] bg-[${this.headerBackgroundColor}] print:bg-[${this.headerTextColor}] print:bg-[${this.headerBackgroundColor}]`
+    }
 }
