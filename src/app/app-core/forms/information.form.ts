@@ -10,6 +10,7 @@ export const DEFAULT_INFORMATION_FORM = {
     municipality: ['', Validators.required],
     province: ['Iloilo', Validators.required],
     picture: [null],
+    award: [''],
     description: ['', Validators.required],
 }
 
@@ -23,6 +24,7 @@ export const populateInformation = (information: Information) => {
         municipality: [information.municipality, Validators.required],
         province: [information.province, Validators.required],
         picture: [information.picture],
+        award: [information.award, Validators.required],
         description: [information.description, Validators.required],
     }
 }

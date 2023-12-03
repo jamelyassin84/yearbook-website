@@ -10,7 +10,7 @@ export interface Information extends PHPBaseModel {
     description: string
     middle_name: string
     municipality: string
-
+    award: string
     picture: string
     type: InformationTypeEum
 }

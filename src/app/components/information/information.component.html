@@ -141,6 +141,19 @@
         </mat-form-field>
     </div>
 
+    <div class="grid gap-4 mt-4 md:grid-cols-4">
+        <mat-form-field class="w-full">
+            <mat-label>Academic Award</mat-label>
+            <input
+                matInput
+                autofocus
+                placeholder="Magna Cum Laude"
+                formControlName="award"
+            />
+            <mat-error>Academic Award is Required</mat-error>
+        </mat-form-field>
+    </div>
+
     <mat-form-field>
         <mat-label>Description</mat-label>
         <textarea

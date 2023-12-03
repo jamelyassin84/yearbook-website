@@ -65,5 +65,21 @@
         >
             {{ student.information | to_address }}
         </div>
+        <div
+            [ngStyle]="{
+            color: secondTextColor,
+        }"
+            class="text-xs text-center"
+        >
+            {{ student.information .award }}
+        </div>
+        <div
+            [ngStyle]="{
+            color: secondTextColor,
+        }"
+            class="text-xs text-center"
+        >
+            {{ student.information .description }}
+        </div>
     </div>
 </div>
