@@ -73,11 +73,11 @@ export const adminNavigation: FuseNavigationItem[] = [
         link: '/school-admins',
     },
 
-    // {
-    //     id: '10',
-    //     title: 'School Events',
-    //     type: 'basic',
-    //     icon: 'feather:book',
-    //     link: '/events',
-    // },
+    {
+        id: '10',
+        title: 'School Events',
+        type: 'basic',
+        icon: 'feather:book',
+        link: '/events',
+    },
 ]

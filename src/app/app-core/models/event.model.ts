@@ -7,4 +7,5 @@ export interface SchoolEvent extends PHPBaseModel {
     description: string
     school_year_id: string
     school_year: SchoolYear
+    files: string[]
 }
